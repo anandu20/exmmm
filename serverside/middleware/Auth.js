@@ -1,6 +1,6 @@
 import pkg from 'jsonwebtoken'
 const {verify}=pkg;
-export default async function Auth(req,res,next) {
+export default async function auth(req,res,next) {
     try{
         const key = req.headers.authorization;
         console.log(req.headers.authorization);
