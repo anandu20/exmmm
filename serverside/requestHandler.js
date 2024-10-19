@@ -1,4 +1,4 @@
-import employSchema from './models/employ.model.js'
+// import employSchema from './models/employ.model.js'
 import bcrypt from 'bcrypt'
 import userSchema from './models/user.model.js'
 import pkg from "jsonwebtoken";
@@ -72,21 +72,21 @@ export async function signUp(req,res) {
     
 }
 
-export async function addEmp(req,res){
-    try{
-        const{...employ}=req.body;
-        const {empid}=req.body;
-        const check=await employSchema.findOne({empid});
-        if (!check) {
-            const data=await employSchema.create({...employ});
-            return res.status(201).send({msg:data})
-        }
-        return res.status(400).send({msg:"data exist"})
+// export async function addEmp(req,res){
+//     try{
+//         const{...employ}=req.body;
+//         const {empid}=req.body;
+//         const check=await employSchema.findOne({empid});
+//         if (!check) {
+//             const data=await employSchema.create({...employ});
+//             return res.status(201).send({msg:data})
+//         }
+//         return res.status(400).send({msg:"data exist"})
         
-    }catch(error){
-        res.status(404).send({msg:error})
-    }
-}
+//     }catch(error){
+//         res.status(404).send({msg:error})
+//     }
+// }
 
 export async function getEmployees(req,res) {
     try {
@@ -96,7 +96,7 @@ export async function getEmployees(req,res) {
         console.log(user);
         if(!user) 
             return res.status(403).send({msg:"Unauthorized access"})
-        const employees=await employSchema.find();
+        const employees=await userSchema.find();
         res.status(200).send({employees,username:user.username})
         
     } catch (error) {
